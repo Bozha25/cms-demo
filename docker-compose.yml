@@ -1,0 +1,26 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Dev@12345!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  opensearch:
+    image: opensearchproject/opensearch:2
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+    ports:
+      - "9200:9200"
